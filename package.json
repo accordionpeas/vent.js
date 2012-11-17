@@ -1,0 +1,8 @@
+{
+	"name": "vent",
+	"version": "0.0.1",
+	"description": "JavaScript event dispatcher",
+	"author": "http://github.com/accordionpeas/vent.js",
+	"keywords": ["vent", "event dispatcher", "events"],
+	"main": "./vent.js"
+}
