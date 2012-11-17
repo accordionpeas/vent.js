@@ -45,20 +45,28 @@ Callbacks bound to the special 'all' event will be triggered when any event fire
 
 Unbind event listener(s) from an object. There are 4 levels of specificity that can be achieved with this method;
 
-## No parameters
+- No parameters
+
 	Removes all event listeners
+
 	object.unbind();
 
-## 1 parameter
+- 1 parameter
+
 	Removes all event listeners for the event 'change'
+
 	object.unbind('change')
 
-## 2 parameters
+- 2 parameters
+
 	Removes just the 'onChange' callback for the 'change' event
+
 	object.unbind('change', onChange)
 	
-## 3 parameters
+- 3 parameters
+
 	Removes just the 'onChange' callback for the 'change' event with 'anotherObject' as the context
+
 	object.unbind('change', onChange, anotherObject)
 	
 Like the 'bind' method, the 'event' parameter refer to more than one event by passing it as a space-separated string.
