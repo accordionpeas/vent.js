@@ -49,25 +49,25 @@ Unbind event listener(s) from an object. There are 4 levels of specificity that 
 
 	Removes all event listeners
 
-	vent.unbind();
+	vent.off();
 
 - 1 parameter
 
 	Removes all event listeners for the given event name
 
-	vent.unbind('change')
+	vent.off('change')
 
 - 2 parameters
 
 	Removes all event listeners for the given event name that match the callback function
 
-	vent.unbind('change', onChange)
+	vent.off('change', onChange)
 	
 - 3 parameters
 
 	Removes all event listeners for the given event name that match the callback function and the context
 
-	vent.unbind('change', onChange, anotherObject)
+	vent.off('change', onChange, anotherObject)
 	
 Like the 'on' method, the 'event' parameter may refer to more than one event by passing it as a space-separated string.
 	
