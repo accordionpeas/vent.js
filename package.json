@@ -1,8 +1,16 @@
 {
 	"name": "vent",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "JavaScript event dispatcher",
-	"author": "http://github.com/accordionpeas/vent.js",
+	"homepage": "http://github.com/accordionpeas/vent.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/accordionpeas/vent.js.git"
+	},
 	"keywords": ["vent", "event dispatcher", "events"],
-	"main": "./vent.js"
+	"main": "./vent.js",
+	"devDependencies": {
+		"mocha": "1.15.1",
+		"chai": "1.8.1"
+	}
 }

@@ -10,24 +10,24 @@ vent.js ships with support for commonJS and AMD environments.
 Below is an example of how to use vent.js:
 
 	//create a new instance of vent.
-	var dispatcher = new Vent();
+	var vent = new Vent();
 	
 	//bind an event listener.
-	dispatcher.bind('myEvent', function(data){
+	vent.on('myEvent', function(data){
 		console.log(data);
 	});
 	
 	//trigger an event
-	dispatcher.trigger('myEvent', {
+	vent.trigger('myEvent', {
 		some: 'data'
 	});
 	
 	//unbind an event
-	dispatcher.unbind('myEvent');
+	vent.off('myEvent');
 	
-# bind
+# on / bind
 
-> object.bind(event, callback, [context])
+> vent.on(event, callback, [context])
 
 Bind event listener(s) to an object. The 'callback' will be invoked when the 'event' is fired. To bind the same callback to multiple events pass the 'event' parameter in as a space-separated string.
 
@@ -35,13 +35,13 @@ The 'context' of the callback can be specified by passing an object in as the op
 
 Callbacks bound to the special 'all' event will be triggered when any event fires and are passed the name of the event as the first parameter. E.g.
 
-	object.bind('all', function(eventName){
+	vent.on('all', function(eventName){
 		console.log(eventName);
 	});
 
-# unbind
+# off / unbind
 
-> object.unbind([event], [callback], [context])
+> vent.off([event], [callback], [context])
 
 Unbind event listener(s) from an object. There are 4 levels of specificity that can be achieved with this method;
 
@@ -49,31 +49,31 @@ Unbind event listener(s) from an object. There are 4 levels of specificity that 
 
 	Removes all event listeners
 
-	object.unbind();
+	vent.unbind();
 
 - 1 parameter
 
-	Removes all event listeners for the event 'change'
+	Removes all event listeners for the given event name
 
-	object.unbind('change')
+	vent.unbind('change')
 
 - 2 parameters
 
-	Removes just the 'onChange' callback for the 'change' event
+	Removes all event listeners for the given event name that match the callback function
 
-	object.unbind('change', onChange)
+	vent.unbind('change', onChange)
 	
 - 3 parameters
 
-	Removes just the 'onChange' callback for the 'change' event with 'anotherObject' as the context
+	Removes all event listeners for the given event name that match the callback function and the context
 
-	object.unbind('change', onChange, anotherObject)
+	vent.unbind('change', onChange, anotherObject)
 	
-Like the 'bind' method, the 'event' parameter refer to more than one event by passing it as a space-separated string.
+Like the 'on' method, the 'event' parameter may refer to more than one event by passing it as a space-separated string.
 	
 # trigger
 
-> object.trigger(event, [*args])
+> vent.trigger(event, [*args])
 
 Triggers event listener(s) on an object. The arguments that are passed into this method are sent to the listener callback.
 

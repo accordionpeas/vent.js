@@ -1,34 +1,53 @@
 /**
  * Event dispatcher that facilitates binding, unbinding and triggering of events.
- * @version: 0.0.1
+ * @version: 0.0.2
  */
-(function(exports){
+(function(Vent){
 	if(typeof module !== 'undefined' && module.exports){ //CommonJS
-		module.exports = exports;
+		module.exports = Vent;
 	}
 	else if(typeof define === 'function'){ //AMD
 		define(function(){
-			return exports;
+			return Vent;
 		});
 	}
 	else{
-		window.Vent = exports;
+		window.Vent = Vent;
 	}
 	
 }(function(){
-	var exports = function(){
+	var Vent = function(){
 		this.events = {};
 	};
 	
-	exports.prototype = {
+	Vent.prototype = {
+	
 		spliter: /\s+/,
+		
 		/**
-		 * Binds event listener(s).
-		 * @param: {string} events - space-separated list of event names.
-		 * @param: {function} callback - function to be invoked when event is triggered.
-		 * @param: {context} object - context to be passed to callback.
-		 * @returns: {object} this.
-		 */
+		* Alias for "bind" method.
+		* @method on
+		*/
+		on: function(){
+			return this.bind.apply(this, arguments);
+		},
+		
+		/**
+		* Alias for "unbind" method.
+		* @method off
+		*/
+		off: function(){
+			return this.unbind.apply(this, arguments);
+		},
+		
+		/**
+		* Binds event listener(s).
+		* @method bind
+		* @param events {string} space-separated list of event names.
+		* @param callback {function} function to be invoked when event is triggered.
+		* @param [context] {object} context to be passed to callback.
+		* @return {object} this.
+		*/
 		bind: function(events, callback, context){
 			var split = events.split(this.spliter);
 			
@@ -45,13 +64,15 @@
 			}
 			return this;
 		},
+		
 		/**
-		 * Unbinds event listener(s).
-		 * @param: {string} events - space-separated list of event names.
-		 * @param: {function} callback - function to compare with callback.
-		 * @param: {context} object - object to compare with context.
-		 * @returns: {object} this.
-		 */
+		* Unbinds event listener(s).
+		* @method unbind
+		* @param [events] {string} space-separated list of event names.
+		* @param [callback] {function} function to compare with callback.
+		* @param [context] {object} object to compare with context.
+		* @return {object} this.
+		*/
 		unbind: function(events, callback, context){
 			var checkCallback = typeof callback === 'function',
 				checkContext = typeof context === 'object' && context !== null;
@@ -99,11 +120,13 @@
 			
 			return this;
 		},
+		
 		/**
-		 * Triggers event listener(s).
-		 * @param: {string} events - space-separated list of event names.
-		 * @returns: {object} this.
-		 */
+		* Triggers event listener(s).
+		* @method trigger
+		* @param events {string} space-separated list of event names.
+		* @return {object} this.
+		*/
 		trigger: function(events){
 			var split = events.split(this.spliter),
 				//convert arguments to an array.
@@ -137,5 +160,5 @@
 		}
 	};
 	
-	return exports;
+	return Vent;
 }()));
